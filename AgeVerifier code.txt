@@ -1,0 +1,44 @@
+Public Class Form1
+
+    Public strUserName As String
+    Public strUp As String
+    Public shrtUserAge As Short
+
+
+    Public Sub btnRun_Click(sender As Object, e As EventArgs) Handles btnRun.Click
+
+        If Not Short.TryParse(txtEnterAge.Text, shrtUserAge) Or txtEnterAge.Text = String.Empty Then
+            MsgBox("Please enter Numerical Digit Between 1-200")
+        ElseIf txtName.Text = String.Empty Then
+            MsgBox("Please enter Your Name In Box Provided")
+
+        Else
+            VerificationSub()
+        End If
+
+    End Sub
+    Public Sub VerificationSub()
+
+        Integer.TryParse(txtEnterAge.Text, shrtUserAge)
+        strUp = txtName.Text
+        strUserName = strUp.ToUpper()
+
+        Select Case shrtUserAge
+
+            Case < 21
+                NoConformationForm.ShowDialog()
+            Case >= 21
+                YesConformationForm.ShowDialog()
+        End Select
+
+    End Sub
+
+    Public Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        txtName.Text = ""
+        txtEnterAge.Text = ""
+    End Sub
+
+    Public Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        Me.Close()
+    End Sub
+End Class
